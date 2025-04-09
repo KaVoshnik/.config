@@ -35,12 +35,3 @@ killp() {
 killall() {  
     pgrep -f "$1" | xargs kill -9 && echo "Killed: $(pgrep -f "$1" | wc -l) Process" 
 }  
-
-vpn() {  
-    case "$1" in  
-        start) sudo systemctl start wg-quick@wg0 ;;  
-        stop) sudo systemctl stop wg-quick@wg0 ;;  
-        status) sudo wg show ;;  
-        *) echo "Использование: vpn [start|stop|status]" ;;  
-    esac  
-}  
