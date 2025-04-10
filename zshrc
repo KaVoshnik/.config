@@ -35,3 +35,16 @@ killp() {
 killall() {  
     pgrep -f "$1" | xargs kill -9 && echo "Killed: $(pgrep -f "$1" | wc -l) Process" 
 }  
+
+fcs() {
+    echo "Clang format:"
+    clang-format --style='{BasedOnStyle: Google, IndentWidth: 4, ColumnLimit: 110}' -i *.cs
+}
+
+cs() {
+    if [ -z "$1" ]; then
+        echo "Error: Specify file to compile."
+        return 1
+    fi
+    mcs "$1" -out:File.exe && mono File.exe && rm File.exe
+}
